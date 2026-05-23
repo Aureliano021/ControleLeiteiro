@@ -11,12 +11,12 @@ import static org.example.Criar.criar;
 import static org.example.Inicializador.iniciador;
 
 public class Verificador {
-    public static void verificador() throws IOException {
+    public static String verificador() throws IOException {
         Console.aviso("verificando se o arquivo existe.");
         File arquivo = new File("arquivoan.json");
         String conteudo = "null";
 
-        if (arquivo.exists()) {
+        /*if (arquivo.exists()) {
             Console.aviso("Arquivo existe!");
             Path path = Paths.get(arquivo.getPath());
             conteudo = Files.readString(path);
@@ -32,6 +32,14 @@ public class Verificador {
             Console.aviso("Criando novo histórico!");
             String passar = iniciador(conteudo);
             criar(passar);
+        }*/
+        if (arquivo.exists()) {
+            Path path = Paths.get(arquivo.getPath());
+            conteudo = Files.readString(path);
+            return conteudo;
+        }
+        else {
+            return null;
         }
     }
 }

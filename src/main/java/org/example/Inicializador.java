@@ -26,7 +26,7 @@ public class Inicializador {
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        if (conteudo.equals("null")) {
+        if (conteudo == null) {
             JsonArray array = new JsonArray();
 
             String textoJsonFinal = gson.toJson(novo);
