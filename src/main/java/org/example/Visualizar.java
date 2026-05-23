@@ -7,23 +7,21 @@ import com.google.gson.JsonParser;
 
 import java.util.Scanner;
 
-public class visualizar{
+public class Visualizar {
 
-    public visualizar (String conteudo) {
+    public Visualizar(String conteudo) {
         boolean existe = false;
-        System.out.println("informe a data");
-        Scanner leitor = new Scanner(System.in);
-        String data = leitor.nextLine();
-        JsonArray array = new JsonParser().parse(conteudo).getAsJsonArray();
+        String data = Console.lertexto("Informe a Data. (DD/MM/AAAA)");
+        JsonArray array = JsonParser.parseString(conteudo).getAsJsonArray();
         for (JsonElement element : array) {
             JsonObject obj = element.getAsJsonObject();
             String dataarray = obj.get("data").getAsString();
             if (dataarray.equals(data)) {
                 existe = true;
-                System.out.println("a quantidade de leite nessa data foi: " + obj.get("quantidadeleite").getAsString());
+                System.out.println("A quantidade de leite nessa data foi: " + obj.get("quantidadeleite").getAsString());
                 boolean fora = obj.get("fora").getAsBoolean();
                 if (fora) {
-                    System.out.println("Mas alguns litros fora ao registro (levou pra casa)");
+                    System.out.println("Atenção: parte do leite foi retirada para consumo interno.");
                 }
             }
 
@@ -31,8 +29,8 @@ public class visualizar{
         if (!existe) {
             System.out.println("Não há registro para a data informada.");
         }
-        System.out.println("Deseja fazer um registro?");
-        if (!leitor.nextLine().equals("s")) {
+        String resposta = Console.lertexto("Deseja fazer um registro?");
+        if (!resposta.equals("s")) {
             System.exit(0);
         }
     }
