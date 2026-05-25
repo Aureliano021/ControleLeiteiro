@@ -12,7 +12,7 @@ import static org.example.Inicializador.iniciador;
 
 public class Verificador {
     public static String verificador() throws IOException {
-        Console.aviso("verificando se o arquivo existe.");
+        Terminal.aviso("verificando se o arquivo existe.");
         File arquivo = new File("arquivoan.json");
         String conteudo = "null";
 

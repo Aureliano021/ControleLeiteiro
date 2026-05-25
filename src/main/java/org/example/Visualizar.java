@@ -11,7 +11,7 @@ public class Visualizar {
 
     public Visualizar(String conteudo) {
         boolean existe = false;
-        String data = Console.lertexto("Informe a Data. (DD/MM/AAAA)");
+        String data = Terminal.lertexto("Informe a Data. (DD/MM/AAAA)");
         JsonArray array = JsonParser.parseString(conteudo).getAsJsonArray();
         for (JsonElement element : array) {
             JsonObject obj = element.getAsJsonObject();

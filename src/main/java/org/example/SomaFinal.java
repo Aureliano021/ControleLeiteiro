@@ -16,9 +16,9 @@ public class SomaFinal {
         String conteudo = verificador();
         if (conteudo != null) {
             int total = 0;
-            int resposta = Console.lerint("Realizar soma \n 1 - Anual \n 2 - Mensal");
+            int resposta = Terminal.lerint("Realizar soma \n 1 - Anual \n 2 - Mensal");
                     if (resposta == 1) {
-                        String data = Console.lertexto("Informe o ano:");
+                        String data = Terminal.lertexto("Informe o ano:");
                         JsonArray array = JsonParser.parseString(conteudo).getAsJsonArray();
                         for (JsonElement jsonElement : array) {
                             JsonObject obj = jsonElement.getAsJsonObject();
@@ -30,13 +30,13 @@ public class SomaFinal {
 
                         }
                         if (total == 0) {
-                            Console.erro("Não há resgistro para o ano informado!");
+                            Terminal.erro("Não há resgistro para o ano informado!");
                         }else {
-                            Console.mensagem("total: " + total);
+                            Terminal.mensagem("total: " + total);
                         }
                     }
                     else if (resposta == 2) {
-                        String data = Console.lertexto("Informe o mês e o ano:");
+                        String data = Terminal.lertexto("Informe o mês e o ano:");
                         JsonArray array = JsonParser.parseString(conteudo).getAsJsonArray();
                         for (JsonElement jsonElement : array) {
                             JsonObject obj = jsonElement.getAsJsonObject();
@@ -49,17 +49,17 @@ public class SomaFinal {
 
                         }
                         if (total == 0) {
-                            Console.erro("Não há registro para o mês informado!");
+                            Terminal.erro("Não há registro para o mês informado!");
                         }else {
-                            Console.mensagem("total: " + total);
+                            Terminal.mensagem("total: " + total);
                         }
                         }
                     else {
-                        Console.erro("Digite apenas \"1\" ou \"2\"!");
+                        Terminal.erro("Digite apenas \"1\" ou \"2\"!");
                     }
         }
         else {
-            Console.erro("Não há registros.");
+            Terminal.erro("Não há registros.");
         }
     }
 

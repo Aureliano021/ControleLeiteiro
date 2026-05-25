@@ -7,16 +7,16 @@ import java.util.Scanner;
 
 public class Inicializador {
     public static String iniciador (String conteudo){
-        int leite = Console.lerint("informe a quantidade de leite:");
-        int data = Console.lerint("informe a data:");
-        boolean fora = Console.lerboolean("Há fora? (true/false):");
+        int leite = Terminal.lerint("informe a quantidade de leite:");
+        int data = Terminal.lerint("informe a data:");
+        boolean fora = Terminal.lerboolean("Há fora? (true/false):");
         Scanner sc = new Scanner(System.in);
         int hoje = LocalDate.now().getDayOfMonth();
         LocalDate date;
 
         if (data != hoje) {
-            Console.aviso("A data informada não é hoje!");
-            String texto = Console.lertexto("Informe novamente a data no formato AAAA-MM-DD");
+            Terminal.aviso("A data informada não é hoje!");
+            String texto = Terminal.lertexto("Informe novamente a data no formato AAAA-MM-DD");
             date = LocalDate.parse(texto);
         } else {
             date = LocalDate.now();

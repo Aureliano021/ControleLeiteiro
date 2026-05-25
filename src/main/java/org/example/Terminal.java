@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public class Console {
+public class Terminal {
     static String lertexto (String pergunta) {
         System.out.println(pergunta);
         Scanner ler = new Scanner (System.in);
