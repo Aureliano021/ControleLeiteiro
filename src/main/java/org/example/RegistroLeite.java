@@ -1,21 +1,41 @@
 package org.example;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import static org.example.Main.dtf;
 
 public class RegistroLeite {
-    int quantidadeleite;
-    String data;
-    Boolean fora;
+    private int quantidadeleite;
+    private String data;
+    private Boolean fora;
 
-    public RegistroLeite(int leite, LocalDate data, boolean fora) {
+    public void setLeite(int leite) {
         this.quantidadeleite = leite;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedData = data.format(dtf);
-        this.data = formattedData;
-        this.fora = fora;
+    }
+    public int getQuantidadeleite() {
+        return quantidadeleite;
+    }
 
+    public void setData(LocalDate data) {
+        LocalDate DataHoje = LocalDate.now();
+        if (data.isAfter(DataHoje)) {
+            throw new RuntimeException("Não é possível adicionar data futura");
+        }
+        else {
+            this.data = data.format(dtf);
+        }
+
+    }
+    public LocalDate getData() {
+        return LocalDate.parse(data);
+    }
+
+    public void setFora(Boolean fora) {
+        this.fora = fora;
+    }
+    public Boolean getFora() {
+        return fora;
     }
 
 
-}
 
+}

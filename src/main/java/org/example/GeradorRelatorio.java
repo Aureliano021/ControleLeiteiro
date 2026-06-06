@@ -4,14 +4,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+    
 import java.io.IOException;
 
-import static org.example.LeitorArquivo.verificador;
+import static org.example.LeitorArquivo.verificarExiste;
 
 public class GeradorRelatorio {
     public static void soma() throws IOException {
-        String conteudo = verificador();
+        String conteudo = verificarExiste();
         if (conteudo != null) {
             int total = 0;
             int resposta = Terminal.lerint("Realizar soma \n 1 - Anual \n 2 - Mensal");
