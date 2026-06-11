@@ -34,12 +34,12 @@ public class GeradorRelatorio {
                         }
                     }
                     else if (resposta == 2) {
-                        String data = Terminal.lertexto("Informe o mês e o ano:");
+                        String data = Terminal.lertexto("Informe o ano e o mês: (AAAA-MM)");
                         JsonArray array = JsonParser.parseString(conteudo).getAsJsonArray();
                         for (JsonElement jsonElement : array) {
                             JsonObject obj = jsonElement.getAsJsonObject();
                             String dataarray = obj.get("data").getAsString();
-                            if (dataarray.substring(3,10).equals(data)) {
+                            if (dataarray.substring(0,7).equals(data)) {
                                 int quantidade = obj.get("quantidadeleite").getAsInt();
                                 total += quantidade;
                             }

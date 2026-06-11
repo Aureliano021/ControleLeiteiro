@@ -14,18 +14,15 @@ import static org.example.Main.caminho;
 
 public class LeitorArquivo {
     public static String verificarExiste() throws IOException {
-        Terminal.aviso("verificando se o arquivo existe");
         File arquivo = new File(caminho);
         String conteudo;
         if (arquivo.exists()) {
             Path path = Paths.get(arquivo.getPath());
             conteudo = Files.readString(path);
             JsonArray arrayA = JsonParser.parseString(conteudo).getAsJsonArray();
-            Terminal.aviso("Ordenando o arquivo existente");
-            arrayA = verificarOrdem(arrayA);
+            arrayA = verificarOrdem(arrayA); //ordena o arquivo existente.
             String array;
             array = arrayA.toString();
-            Terminal.aviso("O arquivo existe");
             return array;
         }
         else {

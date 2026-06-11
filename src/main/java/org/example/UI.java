@@ -1,23 +1,42 @@
 package org.example;
 
 import com.google.gson.*;
+import org.example.serviço.Previsao;
+import org.example.serviço.ServicoPrevisao;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.example.GravadorArquivo.criar;
 import static org.example.GeradorRelatorio.soma;
 import static org.example.LeitorArquivo.verificarExiste;
 
 public class UI {
-    public static void iniciar() throws IOException {
+    public static Previsao servico;
+
+    static {
+        try {
+            servico = ServicoPrevisao.pegarPrevisao();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static LocalDateTime dataTime = servico.getCurrent().getData();
+
+    public static void iniciar() throws Exception {
         boolean continua = true;
         Terminal.mensagem("\u001B[1m\u001B[36m" + "Iniciando Registro de Leite" + "\u001B[0m");
+
+
+
         while (continua) {
 
             String existe = LeitorArquivo.verificarExiste();
-            criar(existe);
             if (existe != null) {
+                Terminal.mensagem(servico.toString());
+                criar(existe);
                 int resposta = Terminal.lerint("""
                         MENU\u001B[34m
                         1 - Fazer registro
@@ -32,11 +51,11 @@ public class UI {
                         try{
                         String passar = fluxoDeRegistro(existe);
                             criar(passar);
-                        break;
                         }
                         catch (Exception e){
                             System.err.println(e.getMessage());
                         }
+                        break;
                     case 2:
                         Terminal.limpar();
                         new ConsultaHistorico(existe);
@@ -74,7 +93,8 @@ public class UI {
         boolean escolhaValida = false;
         while (!escolhaValida) {
         if (escolha.equals("sim")){
-            data = LocalDate.now();
+            data = dataTime.toLocalDate();
+            System.out.println(data);
         }
         else {
             data = LocalDate.parse(Terminal.lertexto("Informe a data. (AAAA-MM-DD)"));
